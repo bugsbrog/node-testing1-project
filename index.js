@@ -185,8 +185,13 @@ class Car {
  *    // result is false
  * })
  */
-function isEvenNumberAsync(number) {
-  // ✨ implement
+async function isEvenNumberAsync(number) {
+  // Could also do this I guess. Still passes tests
+  // return number % 2 === 0 || false
+  if (number % 2 === 0) {
+    return true
+  }
+  return false
 }
 
 module.exports = {
