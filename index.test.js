@@ -103,18 +103,37 @@ describe('[Exercise 5] Seasons', () => {
 })
 
 describe('[Exercise 6] Car', () => {
-  let focus
+  let subaru
   beforeEach(() => {
-    focus = new utils.Car('focus', 20, 30) // each test must start with a fresh car
+    subaru = new utils.Car('subaru', 20, 30) // each test must start with a fresh car
   })
-  test.todo('[15] driving the car returns the updated odometer', // () => {}
-  )
-  test.todo('[16] driving the car uses gas', // () => {}
-  )
-  test.todo('[17] refueling allows to keep driving', // () => {}
-  )
-  test.todo('[18] adding fuel to a full tank has no effect', // () => {}
-  )
+  test('[15] driving the car returns the updated odometer', () => {
+    expect(subaru.drive(100)).toBe(100)
+    expect(subaru.drive(100)).toBe(200)
+    expect(subaru.drive(100)).toBe(300)
+    expect(subaru.drive(200)).toBe(500)
+  })
+  test('[16] driving the car uses gas', () => {
+    subaru.drive(600)
+    expect(subaru.drive(1)).toBe(600)
+    expect(subaru.drive(1)).toBe(600)
+    expect(subaru.drive(1)).toBe(600)
+    expect(subaru.tank).toBe(0)
+  })
+  test('[17] refueling allows to keep driving', () => {
+    subaru.drive(600)
+    subaru.refuel(10)
+    subaru.drive(600)
+    expect(subaru.odometer).toBe(900)
+    subaru.refuel(20)
+    subaru.drive(600)
+    expect(subaru.odometer).toBe(1500)
+  })
+  test('[18] adding fuel to a full tank has no effect', () => {
+    subaru.refuel(2000000)
+    subaru.drive(10000)
+    expect(subaru.odometer).toBe(600)
+  })
 })
 
 describe('[Exercise 7] isEvenNumberAsync', () => {
